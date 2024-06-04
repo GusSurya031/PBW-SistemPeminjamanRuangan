@@ -17,9 +17,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'nim',
         'name',
         'email',
         'password',
+        'gender',
+        'phone_number',
     ];
 
     /**
@@ -43,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function loan_schedules()
+    {
+        return $this->belongsToMany(LoanSchedule::class);
     }
 }

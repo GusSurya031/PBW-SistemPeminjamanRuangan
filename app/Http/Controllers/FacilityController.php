@@ -12,7 +12,8 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        //
+        $facilities = Facility::all();
+        return view('dashboards.facility', compact('facilities'));
     }
 
     /**

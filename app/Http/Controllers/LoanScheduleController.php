@@ -12,7 +12,7 @@ class LoanScheduleController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboards.schedule');
     }
 
     /**
@@ -20,7 +20,7 @@ class LoanScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboards.forms');
     }
 
     /**

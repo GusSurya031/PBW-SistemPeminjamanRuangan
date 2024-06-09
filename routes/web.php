@@ -30,3 +30,4 @@ Route::get('/facility', [FacilityController::class, 'index']);
 Route::get('/building', [BuildingController::class, 'index']);
 
 Route::get('/room', [RoomController::class, 'index']);
+// Route::resource('room', RoomController::class);

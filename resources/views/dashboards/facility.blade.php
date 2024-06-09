@@ -27,13 +27,13 @@
                             @foreach ($facilities as $facility)
                                 <tr class="text-center">
                                     <td class=" py-3 px-4">{{ $loop->iteration }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->id }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->chair }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->table }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->ac }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->screen_lcd }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->board }}</td>
-                                    <td class=" py-3 px-4">{{ $facility->lamp }}</td>
+                                    <td class=" py-3 px-4">F_0{{ $facility->id }}</td>
+                                    <td class=" py-3 px-4">{{ $facility->chair }} pcs</td>
+                                    <td class=" py-3 px-4">{{ $facility->table }} pcs</td>
+                                    <td class=" py-3 px-4">{{ $facility->ac }} pcs</td>
+                                    <td class=" py-3 px-4">{{ $facility->screen_lcd }} pcs</td>
+                                    <td class=" py-3 px-4">{{ $facility->board }} pcs</td>
+                                    <td class=" py-3 px-4">{{ $facility->lamp }} pcs</td>
                                 </tr>
                             @endforeach
                         </tbody>

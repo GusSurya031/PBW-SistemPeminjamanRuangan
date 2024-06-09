@@ -14,6 +14,7 @@ class RegisterController extends Controller
     }
     public function store(Request $request)
     {
+        // dd($request);
         $validated = $request->validate([
             'nim' => 'required| max:10| regex:/^([0-9\s\-\+\(\)]*)$/| unique:users',
             'email' => 'required| email:dns| max:255',

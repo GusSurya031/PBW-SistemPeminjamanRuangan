@@ -3,11 +3,11 @@
 @section('container')
     <div class="overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Gedung</h1>
+            <h1 class="text-3xl text-black pb-6">Ruangan</h1>
 
             <div class="w-full">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Gedung Perkuliahan
+                    <i class="fas fa-list mr-3"></i> List Ruangan Perkuliahan
                 </p>
                 <div class="bg-white overflow-auto">
                     <table class="min-w-full bg-white">
@@ -15,18 +15,19 @@
                             <tr class="text-center">
                                 <th class=" py-3 px-4 uppercase font-semibold text-sm">No</th>
                                 <th class=" py-3 px-4 uppercase font-semibold text-sm">Id</th>
-                                <th class=" py-3 px-4 uppercase font-semibold text-sm">Nama Gedung</th>
-                                <th class=" py-3 px-4 uppercase font-semibold text-sm">Jumlah Lantai</th>
+                                <th class=" py-3 px-4 uppercase font-semibold text-sm">Nama Ruangan</th>
+                                <th class=" py-3 px-4 uppercase font-semibold text-sm">Id Fasilitas</th>
+                                <th class=" py-3 px-4 uppercase font-semibold text-sm">Gedung</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                            @foreach ($buildings as $building)
+                            @foreach ($facilities as $facility)
                                 <tr class="text-center">
                                     <td class=" py-3 px-4">{{ $loop->iteration }}</td>
-                                    <td class=" py-3 px-4">{{ $building->id }}</td>
-                                    <td class=" py-3 px-4">{{ $building->building_name }}</td>
-                                    <td class=" py-3 px-4">{{ $building->floor_quantity }}</td>
-                                </tr>
+                                    <td class=" py-3 px-4">{{ $facility->id }}</td>
+                                    <td class=" py-3 px-4">{{ $facility->chair }}</td>
+                                    <td class=" py-3 px-4">{{ $facility->table }}</td>
+                                    <td class=" py-3 px-4">{{ $facility->ac }}</td>
                             @endforeach
                         </tbody>
                     </table>

@@ -23,14 +23,14 @@ class LoanSchedule extends Model
 
     public function admins()
     {
-        return $this->belongsToMany(Admin::class);
+        return $this->belongsToMany(Admin::class, 'admin_id');
     }
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_nim');
     }
     public function rooms()
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsTo(Room::class, 'room_id');
     }
 }

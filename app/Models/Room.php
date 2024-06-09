@@ -23,14 +23,14 @@ class Room extends Model
 
     public function buildings()
     {
-        return $this->belongsTo(Building::class);
+        return $this->belongsTo(Building::class, 'building_id');
     }
-    public function facilties()
+    public function facilities()
     {
-        return $this->belongsTo(Facility::class);
+        return $this->belongsTo(Facility::class, 'facility_id');
     }
     public function loan_schedules()
     {
-        return $this->belongsToMany(LoanSchedule::class);
+        return $this->hasMany(LoanSchedule::class);
     }
 }

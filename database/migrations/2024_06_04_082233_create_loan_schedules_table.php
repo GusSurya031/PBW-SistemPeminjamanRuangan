@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,10 +19,11 @@ return new class extends Migration
 
             $table->string('user_nim');
             $table->foreign('user_nim')->references('nim')->on('users');
+
             $table->date('loan_date');
             $table->date('end_loan_date');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->string('purpose');
             $table->string('status');
             $table->timestamps();

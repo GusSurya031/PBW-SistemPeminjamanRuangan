@@ -12,7 +12,8 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        //
+        $buildings = Building::all();
+        return view('dashboards.building', compact('buildings'));
     }
 
     /**

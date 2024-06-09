@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Building;
+use App\Models\Facility;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,16 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+
+        $rooms = Room::with(['buildings', 'facilities'])->get();
+        // $rooms = Room::with('buildings')->get();
+        // dd($rooms);
+
+        $buildings = Building::with('rooms')->get();
+        $facilities = Facility::with('rooms')->get();
+
+        // dd($rooms, $buildings, $facilities);
+        return view('dashboards.room', compact('rooms', 'buildings', 'facilities'));
     }
 
     /**
@@ -28,7 +39,6 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +46,11 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        $room = Room::with('buildings', 'facilities')->get();
+        $buildings = Building::with('rooms')->get();
+        $facilities = Facility::with('rooms')->get();
+
+        return view('dashboards.showBuilding', compact('room', 'buildings', 'facilities'));
     }
 
     /**

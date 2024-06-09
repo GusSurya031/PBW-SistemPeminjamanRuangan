@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('length');
             $table->integer('width');
             $table->integer('capacity');
-            $table->string('function');
-            $table->string('description');
+            $table->text('function');
+            $table->text('description');
             $table->timestamps();
         });
     }

@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function loan_schedules()
     {
-        return $this->belongsToMany(LoanSchedule::class);
+        return $this->hasMany(LoanSchedule::class);
     }
 }

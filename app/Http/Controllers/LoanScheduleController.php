@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LoanSchedule;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class LoanScheduleController extends Controller
@@ -12,7 +13,9 @@ class LoanScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $loanSchedules = LoanSchedule::with('rooms')->get();
+        $rooms = Room::with('loan_schedules')->get();
+        return view('dashboards.schedule', compact('loanSchedules', 'rooms'));
     }
 
     /**
@@ -20,7 +23,7 @@ class LoanScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboards.forms');
     }
 
     /**

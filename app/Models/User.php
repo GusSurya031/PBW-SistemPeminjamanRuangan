@@ -16,6 +16,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $primaryKey = 'nim';
     protected $fillable = [
         'nim',
         'name',
@@ -30,6 +32,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $keyType = 'string';
+    public $incrementing = false;
     protected $hidden = [
         'password',
         'remember_token',

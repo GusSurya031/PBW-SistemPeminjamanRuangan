@@ -3,101 +3,114 @@
 @section('container')
     <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="w-full text-3xl text-black pb-6">Forms</h1>
-
-            <div class="flex flex-wrap">
-                <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
-                    <p class="text-xl pb-6 flex items-center">
-                        <i class="fas fa-list mr-3"></i> Contact Form
-                    </p>
-                    <div class="leading-loose">
-                        <form class="p-10 bg-white rounded shadow-xl">
-                            <div class="">
-                                <label class="block text-sm text-gray-600" for="name">Name</label>
-                                <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="name"
-                                    name="name" type="text" required="" placeholder="Your Name" aria-label="Name">
-                            </div>
-                            <div class="mt-2">
-                                <label class="block text-sm text-gray-600" for="email">Email</label>
-                                <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="email"
-                                    name="email" type="text" required="" placeholder="Your Email"
-                                    aria-label="Email">
-                            </div>
-                            <div class="mt-2">
-                                <label class=" block text-sm text-gray-600" for="message">Message</label>
-                                <textarea class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="message" name="message" rows="6"
-                                    required="" placeholder="Your inquiry.." aria-label="Email"></textarea>
-                            </div>
-                            <div class="mt-6">
-                                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
-                                    type="submit">Submit</button>
-                            </div>
-                        </form>
+            <h1 class="w-full text-3xl text-black pb-6">Form</h1>
+            <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+                <p class="text-xl pb-6 flex items-center">
+                    <i class="fas fa-list mr-3"></i> Form Peminjaman Ruangan
+                </p>
+                <p>{{ $user->name }}</p>
+                @if (session()->has('user_nim'))
+                    <div class="bg-red-200">
+                        <p>{{ session('user_nim') }}</p>
                     </div>
-                </div>
+                @endif
+                <div class="leading-loose">
+                    <form class="p-10 bg-white rounded shadow-xl" action="/create-schedule" method="POST">
+                        @csrf
+                        {{-- Input Nama --}}
+                        <div>
+                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nama
+                                Lengkap</label>
+                            <div class="mt-2">
+                                <input id="name" name="name" type="text" autocomplete="name" required
+                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6 @error('name') is-invalid @enderror">
+                                @error('name')
+                                    <div class="italic text-red-400 font-semibold text-sm">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- Input NIM --}}
+                        <div class="mt-4">
+                            <label for="user_nim" class="block text-sm font-medium leading-6 text-gray-900">NIM</label>
+                            <div class="mt-2">
+                                <input id="user_nim" name="user_nim" type="text" autocomplete="user_nim" required
+                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
 
-                <div class="w-full lg:w-1/2 mt-6 pl-0 lg:pl-2">
-                    <p class="text-xl pb-6 flex items-center">
-                        <i class="fas fa-list mr-3"></i> Checkout Form
-                    </p>
-                    <div class="leading-loose">
-                        <form class="p-10 bg-white rounded shadow-xl">
-                            <p class="text-lg text-gray-800 font-medium pb-4">Customer information</p>
-                            <div class="">
-                                <label class="block text-sm text-gray-600" for="cus_name">Name</label>
-                                <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="cus_name"
-                                    name="cus_name" type="text" required="" placeholder="Your Name" aria-label="Name">
-                            </div>
+                        {{-- Input Class --}}
+                        <div class="mt-4">
+                            <label for="room_id" class="block text-sm font-medium leading-6 text-gray-900">Pilihan
+                                Ruangan</label>
                             <div class="mt-2">
-                                <label class="block text-sm text-gray-600" for="cus_email">Email</label>
-                                <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="cus_email"
-                                    name="cus_email" type="text" required="" placeholder="Your Email"
-                                    aria-label="Email">
+                                <select id="room_id" name="room_id" required
+                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <option hidden></option>
+                                    <option value="1">BG 1.1</option>
+                                    <option value="2">BG 1.2</option>
+                                </select>
                             </div>
+                        </div>
+                        {{-- Input Date --}}
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="loan_date" class="block text-sm font-medium leading-6 text-gray-900">Tanggal
+                                    Mulai</label>
+                                <div class="mt-2">
+                                    <input id="loan_date" name="loan_date" type="date" autocomplete="loan_date" required
+                                        class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="end_loan_date" class="block text-sm font-medium leading-6 text-gray-900">Tanggal
+                                    Selesai</label>
+                                <div class="mt-2">
+                                    <input id="end_loan_date" name="end_loan_date" type="date"
+                                        autocomplete="end_loan_date" required
+                                        class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Input Time --}}
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="start_time" class="block text-sm font-medium leading-6 text-gray-900">Jam
+                                    Mulai</label>
+                                <div class="mt-2">
+                                    <input id="start_time" name="start_time" type="time" autocomplete="start_time"
+                                        required
+                                        class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="end_time" class="block text-sm font-medium leading-6 text-gray-900">Jam
+                                    Selesai</label>
+                                <div class="mt-2">
+                                    <input id="end_time" name="end_time" type="time" autocomplete="end_time" required
+                                        class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Input Purpose --}}
+                        <div class="mt-4">
+                            <label for="purpose" class="block text-sm font-medium leading-6 text-gray-900">Tujuan</label>
                             <div class="mt-2">
-                                <label class=" block text-sm text-gray-600" for="cus_email">Address</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"
-                                    name="cus_email" type="text" required="" placeholder="Street" aria-label="Email">
+                                <select id="purpose" name="purpose" required
+                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <option hidden></option>
+                                    <option value="perkuliahan">Perkuliahan</option>
+                                    <option value="panitia">Kepanitiaan</option>
+                                </select>
                             </div>
-                            <div class="mt-2">
-                                <label class="hidden text-sm block text-gray-600" for="cus_email">City</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"
-                                    name="cus_email" type="text" required="" placeholder="City" aria-label="Email">
-                            </div>
-                            <div class="inline-block mt-2 w-1/2 pr-1">
-                                <label class="hidden block text-sm text-gray-600" for="cus_email">Country</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"
-                                    name="cus_email" type="text" required="" placeholder="Country" aria-label="Email">
-                            </div>
-                            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
-                                <label class="hidden block text-sm text-gray-600" for="cus_email">Zip</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email"
-                                    name="cus_email" type="text" required="" placeholder="Zip"
-                                    aria-label="Email">
-                            </div>
-                            <p class="text-lg text-gray-800 font-medium py-4">Payment information</p>
-                            <div class="">
-                                <label class="block text-sm text-gray-600" for="cus_name">Card</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_name"
-                                    name="cus_name" type="text" required="" placeholder="Card Number MM/YY CVC"
-                                    aria-label="Name">
-                            </div>
-                            <div class="mt-6">
-                                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
-                                    type="submit">$3.00</button>
-                            </div>
-                        </form>
-                    </div>
-                    <p class="pt-6 text-gray-600">
-                        Source: <a class="underline"
-                            href="https://tailwindcomponents.com/component/checkout-form">https://tailwindcomponents.com/component/checkout-form</a>
-                    </p>
+                        </div>
+                        <button type="submit"
+                            class=" mt-4 justify-end rounded-md bg-indigo-600 p-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                    </form>
                 </div>
             </div>
-        </main>
 
-        <footer class="w-full bg-white text-right p-4">
-            Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
-        </footer>
+        </main>
     </div>
 @endsection

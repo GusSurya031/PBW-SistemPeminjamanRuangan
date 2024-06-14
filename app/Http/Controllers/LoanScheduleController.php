@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\LoanSchedule;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoanScheduleController extends Controller
 {
@@ -23,7 +25,8 @@ class LoanScheduleController extends Controller
      */
     public function create()
     {
-        return view('dashboards.forms');
+        $user = Auth::user();
+        return view('dashboards.forms', compact("user"));
     }
 
     /**
@@ -31,8 +34,29 @@ class LoanScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request
+        $validated = $request->validate([
+            "name" => "required|max:255",
+            "room_id" => "required",
+            "loan_date" => "required|date",
+            "end_loan_date" => "required|date",
+            "start_time" => "required|date_format:H:i",
+            "end_time" => "required|date_format:H:i",
+            "purpose" => "required",
+            "user_nim" => "required| max:10| regex:/^([0-9\s\-\+\(\)]*)$/"
+        ]);
+
+        // dd($validated);
+        $user = User::where('nim', '=', $validated["user_nim"])->first();
+        // Check if user exists
+        if (!$user) {
+            return back()->with('user_nim', 'The specified user does not exist.');
+        }
+
+        LoanSchedule::create($validated);
+        return redirect('/dashboard');
     }
+
 
     /**
      * Display the specified resource.

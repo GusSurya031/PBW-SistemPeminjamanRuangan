@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('loan_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id')->constrained();
-            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('admin_id')->nullable()->constrained();
 
             $table->string('user_nim');
             $table->foreign('user_nim')->references('nim')->on('users');

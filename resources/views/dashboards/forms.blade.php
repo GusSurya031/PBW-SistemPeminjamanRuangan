@@ -8,12 +8,12 @@
                 <p class="text-xl pb-6 flex items-center">
                     <i class="fas fa-list mr-3"></i> Form Peminjaman Ruangan
                 </p>
-                <p>{{ $user->name }}</p>
+                {{-- <p>{{ $user->name }}</p>
                 @if (session()->has('user_nim'))
                     <div class="bg-red-200">
                         <p>{{ session('user_nim') }}</p>
                     </div>
-                @endif
+                @endif --}}
                 <div class="leading-loose">
                     <form class="p-10 bg-white rounded shadow-xl" action="/create-schedule" method="POST">
                         @csrf
@@ -23,10 +23,8 @@
                                 Lengkap</label>
                             <div class="mt-2">
                                 <input id="name" name="name" type="text" autocomplete="name" required
-                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6 @error('name') is-invalid @enderror">
-                                @error('name')
-                                    <div class="italic text-red-400 font-semibold text-sm">{{ $message }}</div>
-                                @enderror
+                                    class="block w-full rounded-md border-0 p-2 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6"
+                                    value="{{ auth()->user()->name }}" disabled>
                             </div>
                         </div>
                         {{-- Input NIM --}}
@@ -34,7 +32,8 @@
                             <label for="user_nim" class="block text-sm font-medium leading-6 text-gray-900">NIM</label>
                             <div class="mt-2">
                                 <input id="user_nim" name="user_nim" type="text" autocomplete="user_nim" required
-                                    class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    class="block w-full rounded-md border-0 p-2 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    value="{{ auth()->user()->nim }}" disabled>
                             </div>
                         </div>
 
@@ -46,8 +45,9 @@
                                 <select id="room_id" name="room_id" required
                                     class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <option hidden></option>
-                                    <option value="1">BG 1.1</option>
-                                    <option value="2">BG 1.2</option>
+                                    @foreach ($rooms as $room)
+                                        <option value="{{ $room->room_name }}">{{ $room->room_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

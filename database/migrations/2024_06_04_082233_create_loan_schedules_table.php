@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('loan_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id')->constrained();
-            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('admin_id')->nullable()->constrained();
 
             $table->string('user_nim');
             $table->foreign('user_nim')->references('nim')->on('users');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->string('purpose');
-            $table->string('status');
+            $table->string('status')->default('Available');
             $table->timestamps();
         });
     }

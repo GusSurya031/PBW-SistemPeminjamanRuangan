@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\LoanSchedule;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoanScheduleController extends Controller
 {
@@ -23,7 +25,9 @@ class LoanScheduleController extends Controller
      */
     public function create()
     {
-        return view('dashboards.forms');
+        $user = Auth::user();
+        $rooms = Room::all();
+        return view('dashboards.forms', compact('user', 'rooms'));
     }
 
     /**
@@ -31,8 +35,25 @@ class LoanScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request
+        $validated = $request->validate([
+            // "name" => "required|max:255",
+            // "user_nim" => "required| max:10| regex:/^([0-9\s\-\+\(\)]*)$/",
+            "room_id" => "required",
+            "loan_date" => "required|date",
+            "end_loan_date" => "required|date",
+            "start_time" => "required|date_format:H:i",
+            "end_time" => "required|date_format:H:i",
+            "purpose" => "required",
+        ]);
+        $validated['name'] = Auth::user()->name;
+        $validated['user_nim'] = Auth::user()->nim;
+        $validated['status'] = 'In Progress';
+
+        LoanSchedule::create($validated);
+        return redirect('/dashboard');
     }
+
 
     /**
      * Display the specified resource.

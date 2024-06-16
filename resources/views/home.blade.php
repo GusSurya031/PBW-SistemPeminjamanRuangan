@@ -30,7 +30,8 @@
                         Peminjaman gedung berbasis sistem di Fakultas MIPA Udayana. Dibuat oleh mahasiswa program studi
                         informatika.
                     </p>
-                    <button class="mt-6 border-stone-900 rounded-md text-white bg-stone-900 px-4 py-2 font-bold">
+                    <button
+                        class="mt-6 border-stone-900 rounded-md text-white bg-stone-900 px-4 py-2 font-bold transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg ">
                         <a href="/forms">Pinjam Ruangan FMIPA</a>
                     </button>
                 </div>

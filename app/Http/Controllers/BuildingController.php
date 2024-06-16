@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\LoanSchedule;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -13,7 +15,11 @@ class BuildingController extends Controller
     public function index()
     {
         $buildings = Building::all();
-        return view('dashboards.building', compact('buildings'));
+        // $loan_schedules = LoanSchedule::with('rooms')->where('room_id', $buildings->rooms->room_id);
+        $loan_schedules = LoanSchedule::all();
+        // $rooms = Room::all();
+        // return view('dashboards.building', compact('buildings'));
+        return view('user.building', compact('buildings', 'loan_schedules'));
     }
 
     /**

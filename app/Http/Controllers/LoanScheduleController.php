@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Building;
 use App\Models\LoanSchedule;
 use App\Models\Room;
 use App\Models\User;
@@ -27,7 +28,8 @@ class LoanScheduleController extends Controller
     {
         $user = Auth::user();
         $rooms = Room::all();
-        return view('dashboards.forms', compact('user', 'rooms'));
+        $buildings = Building::all();
+        return view('user.loanRoom', compact('user', 'rooms', 'buildings'));
     }
 
     /**
@@ -51,7 +53,7 @@ class LoanScheduleController extends Controller
         $validated['status'] = 'In Progress';
 
         LoanSchedule::create($validated);
-        return redirect('/dashboard');
+        return redirect('/building');
     }
 
 

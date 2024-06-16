@@ -1,7 +1,7 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-white">
     <nav class="container xl:max-w-7xl mx-auto p-4 border-b-2 flex justify-between">
         {{-- Dekstop --}}
-        <div class="w-full lg:w-auto flex justify-between">
+        <div class="w-full lg:w-auto flex justify-between relative">
             {{-- Logo Container --}}
             <div class="flex justify-center items-center gap-2">
                 <img src="/img/logo.png" alt="Logo-ruanganku" class="w-[42px] h-[42px]">
@@ -9,7 +9,7 @@
                 </figcaption>
             </div>
             {{-- Mobile Nav --}}
-            <div class="flex flex-row items-center py-4 lg:py-0 lg:hidden">
+            <div class="flex flex-row items-center lg:py-0 lg:hidden">
                 <div class="relative text-gray-900 hover:text-black block">
                     <button type="button" class="menu-mobile block py-3 px-6 border-b-2 border-transparent"
                         id="menuButton">
@@ -29,20 +29,40 @@
                     </button>
                 </div>
                 {{-- List Detail Nav --}}
-                <ul class="hidden absolute bg-white w-full text-center lg:text-left text-gray-900 text-sm items-center font-bold top-20 right-0 pr-4"
+                <ul class="hidden absolute bg-white w-full text-center lg:text-left text-gray-900 text-sm items-center font-bold top-16 right-0 py-4"
                     id="listNavigation">
                     <li class="relative hover:text-black">
                         <a class="active block py-3 px-6 border-b-2 border-transparent" href=/"">Landing
                             Page</a>
                     </li>
                     <li class="relative hover:text-black">
-                        <a class="block py-3 px-6 border-b-2 border-transparent" href="/schedules">List
+                        <a class="block py-3 px-6 border-b-2 border-transparent" href="/building">List
                             Gedung</a>
                     </li>
                     <li class="relative hover:text-black">
                         <a class="block py-3 px-6 border-b-2 border-transparent" href="/forms">Peminjaman
                             Ruangan</a>
                     </li>
+                    @auth
+                        <li>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button
+                                    class="relative p-3 border border-stone-900 rounded-md text-white bg-stone-900">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <li
+                            class="navbar bg-white w-full flex gap-6 items-center text-gray-900 justify-center font-bold text-base border-t-2 py-2">
+                            <button class="relative border border-stone-900 rounded-md">
+                                <a class="active block py-2 px-3" href="/login">Login</a>
+                            </button>
+                            <button class="relative border border-stone-900 rounded-md text-white bg-stone-900">
+                                <a class="block py-2 px-3" href="/register">
+                                    Register</a>
+                            </button>
+                        </li>
+                    @endauth
 
                 </ul>
             </div>
@@ -53,11 +73,11 @@
             <ul
                 class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-20 text-gray-900 items-center text-lg">
                 <li class="relative ">
-                    <a class="hover:font-bold" href=/"">Landing
+                    <a class="hover:font-bold" href="/">Landing
                         Page</a>
                 </li>
                 <li class="relative ">
-                    <a class="hover:font-bold" href="/schedules">List
+                    <a class="hover:font-bold" href="/building">List
                         Gedung</a>
                 </li>
                 <li class="relative ">
@@ -68,16 +88,29 @@
         </div>
         <div class="">
             <!-- nav login register -->
-            <ul
-                class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
-                <li class="relative border border-stone-900 rounded-md">
-                    <a class="active block py-3 px-6" href="/login">Login</a>
-                </li>
-                <li class="relative border border-stone-900 rounded-md text-white bg-stone-900">
-                    <a class="block py-3 px-6" href="/register">
-                        Register</a>
-                </li>
-            </ul>
+            @auth
+                <div
+                    class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button class="relative block py-2 px-3 rounded-md text-white bg-stone-900">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            @else
+                <ul
+                    class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
+                    <li class="relative border border-stone-900 rounded-md">
+                        <a class="active block py-3 px-6" href="/login">Login</a>
+                    </li>
+                    <li class="relative border border-stone-900 rounded-md text-white bg-stone-900">
+                        <a class="block py-3 px-6" href="/register">
+                            Register</a>
+                    </li>
+                </ul>
+            @endauth
+
         </div>
     </nav>
 </header><!-- end header -->

@@ -33,13 +33,13 @@
                             class="fas fa-comment-dots mr-2"></i>
                         Peminjaman Ruangan</a>
                     @auth
-                        <a href="/forms" class="block px-4 py-2 account-link hover:bg-stone-200"><i
-                                class="fas fa-comment-dots mr-2"></i>
-                            Peminjaman Ruangan</a>
+                        <a href="/history" class="block px-4 py-2 account-link hover:bg-stone-200"><i
+                                class="fas fa-history mr-2"></i>
+                            Riwayat Peminjaman</a>
                     @endauth
                     @auth
                         <div
-                            class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
+                            class="navbar bg-white lg:bg-transparent w-full text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
                             <form action="/logout" method="POST">
                                 @csrf
                                 <button class="w-full px-4 py-2 account-link text-right hover:bg-stone-200 border-t-2"><i

@@ -74,7 +74,7 @@ class LoanScheduleController extends Controller
         $time['start'] = $time['start']->format('H:i');
         $time['end'] = $time['end']->format('H:i');
 
-        $allRooms = LoanSchedule::with('user')->where('room_id', $detailRoomLoan->room_id)->get();
+        $allRooms = LoanSchedule::with('user')->where('room_id', $detailRoomLoan->room_id)->orderBy('loan_date', 'desc')->get();
         // dd($allRooms);
 
         return view('user.detailLoanRoom', compact('detailRoomLoan', 'roomBuilding', 'time', 'allRooms'));
@@ -92,10 +92,45 @@ class LoanScheduleController extends Controller
         return view('user.history', compact('loanSchedules'));
     }
 
-    public function edit(LoanSchedule $loanSchedule)
+    public function showAdmin()
     {
-        //
+        $loanSchedulesAdvice = LoanSchedule::with('rooms')->where('status', 'In Progress')->orderBy('loan_date', 'desc')->get();
+        $loanSchedulesHistory = LoanSchedule::whereNot('status', 'In Progress')->orderBy('loan_date', 'desc')->get();
+
+        return view('dashboards.schedule', compact('loanSchedulesAdvice', 'loanSchedulesHistory'));
     }
+
+    public function detailAdmin($id)
+    {
+        $detailRoomLoan = LoanSchedule::with('rooms', 'user')->find($id);
+        // dd($detailRoomLoan);
+        $roomBuilding = Room::with('buildings', 'facilities')->find($detailRoomLoan->rooms->building_id);
+        // dd($roomBuilding);
+
+        //time
+        $time['start'] = Carbon::createFromFormat('H:i:s', $detailRoomLoan->start_time);
+        $time['end'] = Carbon::createFromFormat('H:i:s', $detailRoomLoan->end_time);
+        $time['start'] = $time['start']->format('H:i');
+        $time['end'] = $time['end']->format('H:i');
+
+        $allRooms = LoanSchedule::with('user')->where('room_id', $detailRoomLoan->room_id)->orderBy('loan_date', 'desc')->get();
+        // dd($allRooms);
+
+        return view('dashboards.detailSchedule', compact('detailRoomLoan', 'roomBuilding', 'time', 'allRooms'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        // dd($request->status);
+        $adminId = Auth('admin')->user()->id;
+        $status = $request->status;
+        LoanSchedule::where('id', $id)->update(['status' => $status, 'admin_id' => $adminId]);
+        // dd(LoanSchedule::find($id));
+
+        return redirect(route('admin.dashboard'));
+    }
+
+
 
     /**
      * Update the specified resource in storage.

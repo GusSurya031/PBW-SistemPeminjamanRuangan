@@ -6,17 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Dashboard Admin</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body class="flex">
-    @include('dashboards.partials.aside')
-    <div class="w-full flex flex-col h-screen">
-        @include('dashboards.partials.navbar')
-        @yield('container')
-    </div>
+    @auth('admin')
+        @include('dashboards.partials.aside')
+        <div class="w-full flex flex-col h-screen">
+            @yield('container')
+        </div>
+    @else
+        <div class="w-full">
+            @yield('container')
+        </div>
+    @endauth
+
     <!-- AlpineJS -->
     <script defer src="https://unpkg.com/@alpinejs/collapse@latest/dist/cdn.min.js"></script>
 

@@ -25,9 +25,9 @@ class LoanSchedule extends Model
     {
         return $this->belongsToMany(Admin::class, 'admin_id');
     }
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'user_nim');
+        return $this->belongsTo(User::class, 'user_nim');
     }
     public function rooms()
     {

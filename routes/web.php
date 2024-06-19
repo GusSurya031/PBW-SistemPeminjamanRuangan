@@ -42,3 +42,5 @@ Route::get('/', function () {
 Route::get('/building', [BuildingController::class, 'index']);
 Route::get('/forms', [LoanScheduleController::class, 'create'])->middleware('auth');
 Route::post('/create-schedule', [LoanScheduleController::class, 'store'])->middleware('auth');
+Route::get('/detail/{id}', [LoanScheduleController::class, 'show']);
+Route::get('/history', [LoanScheduleController::class, 'history'])->middleware('auth');

@@ -6,6 +6,7 @@ use App\Models\Building;
 use App\Models\LoanSchedule;
 use App\Models\Room;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,14 +61,37 @@ class LoanScheduleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LoanSchedule $loanSchedule)
+    public function show($id)
     {
-        //
+        $detailRoomLoan = LoanSchedule::with('rooms')->find($id);
+        // dd($detailRoomLoan);
+        $roomBuilding = Room::with('buildings', 'facilities')->find($detailRoomLoan->rooms->building_id);
+        // dd($roomBuilding);
+
+        //time
+        $time['start'] = Carbon::createFromFormat('H:i:s', $detailRoomLoan->start_time);
+        $time['end'] = Carbon::createFromFormat('H:i:s', $detailRoomLoan->end_time);
+        $time['start'] = $time['start']->format('H:i');
+        $time['end'] = $time['end']->format('H:i');
+
+        $allRooms = LoanSchedule::with('user')->where('room_id', $detailRoomLoan->room_id)->get();
+        // dd($allRooms);
+
+        return view('user.detailLoanRoom', compact('detailRoomLoan', 'roomBuilding', 'time', 'allRooms'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function history()
+    {
+        $idUser = Auth()->user()->nim;
+        $loanSchedules = LoanSchedule::with('rooms')->where('user_nim', $idUser)->get();
+        // dd($loanSchedules);
+        return view('user.history', compact('loanSchedules'));
+    }
+
     public function edit(LoanSchedule $loanSchedule)
     {
         //

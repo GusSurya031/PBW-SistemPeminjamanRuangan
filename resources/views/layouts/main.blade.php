@@ -20,7 +20,7 @@
     @endif
 
     @yield('container')
-
+    @include('layouts.footer')
     <!-- AlpineJS -->
     <script defer src="https://unpkg.com/@alpinejs/collapse@latest/dist/cdn.min.js"></script>
 

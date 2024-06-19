@@ -1,16 +1,17 @@
 @extends('layouts.main')
 
 @section('container')
-    <section class="container xl:max-w-7xl mx-auto px-4 mt-[164px] md:mt-[120px]">
+    <section class="container xl:max-w-7xl mx-auto px-4 mt-[128px] md:mt-[120px]">
         <div class="relative pb-12 border-b-2 border-stone-300 flex flex-col items-center">
-            <button class="absolute left-0 p-4 border-2 text-stone-400 border-stone-400 rounded-full"
+            <button class="absolute left-0 p-3 md:p-4 border-2 text-stone-400 border-stone-400 rounded-full"
                 onclick="window.history.back();">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <h3 class="text-stone-400 text-xl">Daftar riwayat peminjaman gedung anda. </h3>
+            <h3 class="text-center text-sm text-stone-400 md:text-xl mt-8">Daftar riwayat peminjaman gedung
+                anda. </h3>
             <h1 class="text-center font-bold text-5xl uppercase font-light mt-4">PEMINJAMAN ANDA</h1>
         </div>
-        <div>
+        <div class="overflow-auto">
             <table class="min-w-full bg-white mt-4">
                 <thead class="text-xl font-bold bg-stone-900 text-white">
                     <tr class="">

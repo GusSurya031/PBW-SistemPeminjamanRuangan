@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {{-- Phone Number --}}
                     <div>
                         <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900">No

@@ -1,20 +1,21 @@
 @extends('layouts.main')
 
 @section('container')
-    <section class="container xl:max-w-7xl mx-auto px-4 mt-[164px] md:mt-[120px]">
-        <div class="header grid grid-cols-3 gap-4 justify-between pb-12 border-b-2">
-            <div>
-                <button class="p-4 border-2 text-stone-400 border-stone-400 rounded-full" onclick="window.history.back();">
+    <section class="container xl:max-w-7xl mx-auto px-4 mt-[128px] md:mt-[120px]">
+        <div class="header flex md:grid md:grid-cols-3 gap-4 justify-center items-center pb-12 border-b-2 relative">
+            <div class="absolute top-0 left-0">
+                <button class="p-3 md:p-4 border-2 text-stone-400 border-stone-400 rounded-full"
+                    onclick="window.history.back();">
                     <i class="fas fa-chevron-left"></i>
                 </button>
             </div>
             <div class="text-center">
                 <h3 class="text-stone-400 text-xl">Gedung {{ $roomBuilding->buildings->building_name }}</h3>
-                <h1 class="text-center font-bold text-5xl uppercase font-light mt-4">Ruangan
+                <h1 class="text-center font-bold text-4xl md:text-5xl uppercase font-light mt-4">Ruangan
                     {{ $detailRoomLoan->rooms->room_name }}
                 </h1>
             </div>
-            <div class="text-right">
+            <div class="hidden md:block text-right">
                 <p>{{ $time['start'] }} - {{ $time['end'] }}</p>
                 <p>{{ $detailRoomLoan->purpose }}</p>
                 <p>
@@ -41,7 +42,7 @@
                 </p>
             </div>
         </div>
-        <div>
+        <div class="overflow-auto">
             <table class="min-w-full bg-white mt-4">
                 <thead class="text-xl font-bold bg-stone-900 text-white">
                     <tr class="">
@@ -93,7 +94,7 @@
         </div>
         <div class="my-16 flex flex-col gap-8 items-center">
             <h3 class="text-2xl">Fasilitas</h3>
-            <div class="flex gap-8">
+            <div class="flex flex-wrap items-center justify-center gap-8">
                 <p>
                     <span
                         class="rounded-full border border-stone-900 p-3 mr-2 font-bold">{{ $roomBuilding->facilities->chair }}

@@ -1,16 +1,17 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="px-4 mt-[164px] md:mt-[120px]">
+    <div class="px-4 mt-[128px] md:mt-[120px]">
         <div class="relative xl:max-w-7xl mx-auto flex flex-col items-center gap-4 text-center pb-12 border-b-2">
-            <button class="absolute left-0 p-4 border-2 text-stone-400 border-stone-400 rounded-full"
+            <button class="absolute left-0 p-3 md:p-4 border-2 text-stone-400 border-stone-400 rounded-full"
                 onclick="window.history.back();">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <h3 class="text-stone-400 text-xl mt-8">Isi data dibawah untuk meminjam gedung.</h3>
-            <h1 class="text-center text-6xl uppercase font-light">Form Peminjaman Ruangan</h1>
+            <h3 class="text-center md:text-left text-sm text-stone-400 md:text-xl mt-8">Isi data dibawah untuk meminjam
+                gedung.</h3>
+            <h1 class="text-center text-4xl md:text-6xl uppercase font-light">Form Peminjaman Ruangan</h1>
         </div>
-        <main class="container xl:max-w-5xl mx-auto flex-grow p-6">
+        <main class="container xl:max-w-5xl mx-auto flex-grow p-3 md:p-6">
             <div class="w-full pr-0 lg:pr-2">
                 <div class="leading-loose">
                     <form class="p-10 bg-white rounded shadow-xl" action="/create-schedule" method="POST">

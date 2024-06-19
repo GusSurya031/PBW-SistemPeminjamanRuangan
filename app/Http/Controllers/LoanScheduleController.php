@@ -40,8 +40,6 @@ class LoanScheduleController extends Controller
     {
         // Validate the incoming request
         $validated = $request->validate([
-            // "name" => "required|max:255",
-            // "user_nim" => "required| max:10| regex:/^([0-9\s\-\+\(\)]*)$/",
             "room_id" => "required",
             "loan_date" => "required|date",
             "end_loan_date" => "required|date",
@@ -51,7 +49,8 @@ class LoanScheduleController extends Controller
         ]);
         $validated['name'] = Auth::user()->name;
         $validated['user_nim'] = Auth::user()->nim;
-        $validated['status'] = 'In Progress';
+        $validated['status_id'] = 1;
+        // dd($validated);
 
         LoanSchedule::create($validated);
         return redirect('/building');
@@ -65,7 +64,7 @@ class LoanScheduleController extends Controller
     {
         $detailRoomLoan = LoanSchedule::with('rooms')->find($id);
         // dd($detailRoomLoan);
-        $roomBuilding = Room::with('buildings', 'facilities')->find($detailRoomLoan->rooms->building_id);
+        $roomBuilding = Room::with('buildings', 'facilities')->where('building_id', $detailRoomLoan->rooms->building_id)->first();
         // dd($roomBuilding);
 
         //time
@@ -94,18 +93,18 @@ class LoanScheduleController extends Controller
 
     public function showAdmin()
     {
-        $loanSchedulesAdvice = LoanSchedule::with('rooms')->where('status', 'In Progress')->orderBy('loan_date', 'desc')->get();
-        $loanSchedulesHistory = LoanSchedule::whereNot('status', 'In Progress')->orderBy('loan_date', 'desc')->get();
+        $loanSchedulesAdvice = LoanSchedule::with('rooms')->where('status_id', 1)->orderBy('loan_date', 'desc')->get();
+        $loanSchedulesHistory = LoanSchedule::whereNot('status_id', 1)->orderBy('loan_date', 'desc')->get();
 
         return view('dashboards.schedule', compact('loanSchedulesAdvice', 'loanSchedulesHistory'));
     }
 
     public function detailAdmin($id)
     {
+
         $detailRoomLoan = LoanSchedule::with('rooms', 'user')->find($id);
         // dd($detailRoomLoan);
-        $roomBuilding = Room::with('buildings', 'facilities')->find($detailRoomLoan->rooms->building_id);
-        // dd($roomBuilding);
+        $roomBuilding = Room::with('buildings', 'facilities')->where('building_id', $detailRoomLoan->rooms->building_id)->first();
 
         //time
         $time['start'] = Carbon::createFromFormat('H:i:s', $detailRoomLoan->start_time);
@@ -123,8 +122,8 @@ class LoanScheduleController extends Controller
     {
         // dd($request->status);
         $adminId = Auth('admin')->user()->id;
-        $status = $request->status;
-        LoanSchedule::where('id', $id)->update(['status' => $status, 'admin_id' => $adminId]);
+        $status = intval($request->status);
+        LoanSchedule::where('id', $id)->update(['status_id' => $status, 'admin_id' => $adminId]);
         // dd(LoanSchedule::find($id));
 
         return redirect(route('admin.dashboard'));

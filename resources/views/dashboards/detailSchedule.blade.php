@@ -21,13 +21,26 @@
                     <p class="text-2xl">{{ $time['start'] }} - {{ $time['end'] }}</p>
                     <p>{{ $detailRoomLoan->purpose }}</p>
                     <p>
-                        <span
-                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 
-                            @if ($detailRoomLoan->status === 'In Progress') bg-yellow-400 
-                            @elseif ($detailRoomLoan->status === 'In Using') bg-red-600
-                            @else bg-green-600 @endif ">
-                        </span>
-                        {{ $detailRoomLoan->status }}
+                        @if ($detailRoomLoan->status_id == -1)
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                            </span>
+                            Rejected
+                        @elseif ($detailRoomLoan->status_id == 0)
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                            Available
+                        @elseif ($detailRoomLoan->status_id == 1)
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                            Pending
+                        @elseif ($detailRoomLoan->status_id == 2)
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                            Accepted
+                        @elseif ($detailRoomLoan->status_id == 3)
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                            Done
+                        @else
+                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                            Busy
+                        @endif
                     </p>
                 </div>
             </div>
@@ -50,14 +63,27 @@
                         <tr class="border-b-2">
                             <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
                             <td class="text-left py-3 px-4">{{ $allRoom->user->name }}</td>
-                            <td>
-                                <span
-                                    class="inline-block w-[14px] h-[14px] rounded-full mr-2 
-                                    @if ($allRoom->status === 'In Progress') bg-yellow-400 
-                                    @elseif ($allRoom->status === 'In Using') bg-red-600
-                                    @else bg-green-600 @endif ">
-                                </span>
-                                {{ $allRoom->status }}
+                            <td class="text-left py-3 px-4">
+                                @if ($allRoom->status_id == -1)
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                    </span>
+                                    Rejected
+                                @elseif ($allRoom->status_id == 0)
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                    Available
+                                @elseif ($allRoom->status_id == 1)
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                    Pending
+                                @elseif ($allRoom->status_id == 2)
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                    Accepted
+                                @elseif ($allRoom->status_id == 3)
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                    Done
+                                @else
+                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                    Busy
+                                @endif
                             </td>
                             <td class="text-left py-3 px-4">{{ $allRoom->loan_date }}</td>
                             <td class="text-left py-3 px-4">{{ $allRoom->start_time }} -
@@ -139,7 +165,7 @@
                         @csrf
                         @method('PUT')
                         <div class="">
-                            <input type="text" name="status" value="accept" hidden>
+                            <input type="text" name="status" value="2" hidden>
                             <button
                                 class="py-4 w-full border border-2 border-green-500 text-green-500 text-2xl outline outline-green-500 outline-offset-4 font-bold ">
                                 Terima
@@ -150,7 +176,7 @@
                         @csrf
                         @method('PUT')
                         <div class="">
-                            <input type="text" name="status" value="reject" hidden>
+                            <input type="text" name="status" value="-1" hidden>
                             <button
                                 class="py-4 w-full border border-2 border-red-500 text-red-500 text-2xl outline outline-red-500 outline-offset-4 font-bold ">
                                 Tolak

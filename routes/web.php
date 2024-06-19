@@ -11,6 +11,15 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
+//STATUS ID 
+// -1 -> ditolak ->merah
+// 0 -> available  -> abu
+// 1-> pending -> kuning
+// 2 -> diterima ->ijo
+// 3 -> done ->ungu 
+// 4 -> busy -> biru
+
+
 // USER CONTROLER AND GUEST ACCESS 
 Route::get('/', function () {
     return view('home');
@@ -33,9 +42,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login']);
     Route::post('/logout', [AdminLoginController::class, 'logout']);
-    Route::get('/building', [BuildingController::class, 'showAdmin'])->name('admin.building');
-    Route::get('/form', [BuildingController::class, 'showAdmin'])->name('admin.form');
-    Route::get('/schedules', [LoanScheduleController::class, 'showAdmin'])->name('admin.schedules');
-    Route::get('/schedules/{id}', [LoanScheduleController::class, 'detailAdmin'])->name('detail.schedules');
-    Route::put('/schedules/edit/{id}', [LoanScheduleController::class, 'edit'])->name('detail.schedules.edit');
+    Route::get('/building', [BuildingController::class, 'showAdmin'])->name('admin.building')->middleware('admin');
+    Route::get('/form', [BuildingController::class, 'showAdmin'])->name('admin.form')->middleware('admin');
+    Route::get('/schedules', [LoanScheduleController::class, 'showAdmin'])->name('admin.schedules')->middleware('admin');
+    Route::get('/schedules/{id}', [LoanScheduleController::class, 'detailAdmin'])->name('detail.schedules')->middleware('admin');
+    Route::put('/schedules/edit/{id}', [LoanScheduleController::class, 'edit'])->name('detail.schedules.edit')->middleware('admin');
 });

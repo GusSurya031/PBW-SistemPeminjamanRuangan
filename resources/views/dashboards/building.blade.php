@@ -57,13 +57,32 @@
                                                     {{ $schedule->rooms->room_name }}
                                                 </td>
                                                 <td class="text-left py-3 px-4">
-                                                    <span
-                                                        class="inline-block w-[14px] h-[14px] rounded-full mr-2 
-                                                        @if ($schedule->status === 'In Progress') bg-yellow-400 
-                                                        @elseif ($schedule->status === 'In Using') bg-red-600 
-                                                        @else bg-green-600 @endif ">
-                                                    </span>
-                                                    {{ $schedule->status }}
+                                                    @if ($schedule->status_id == -1)
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                                        </span>
+                                                        Rejected
+                                                    @elseif ($schedule->status_id == 0)
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                                        Available
+                                                    @elseif ($schedule->status_id == 1)
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                                        Pending
+                                                    @elseif ($schedule->status_id == 2)
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                                        Accepted
+                                                    @elseif ($schedule->status_id == 3)
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                                        Done
+                                                    @else
+                                                        <span
+                                                            class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                                        Busy
+                                                    @endif
                                                 </td>
                                                 <td class="text-left py-3 px-4">{{ $schedule->purpose }}</td>
                                                 <td class="text-right py-3 px-4">

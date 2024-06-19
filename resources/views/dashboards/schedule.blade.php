@@ -25,14 +25,27 @@
                             <tr class="">
                                 <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->rooms->room_name }}</td>
-                                <td>
-                                    <span
-                                        class="inline-block w-[14px] h-[14px] rounded-full mr-2 
-                                        @if ($loanSchedule->status === 'In Progress') bg-yellow-400 
-                                        @elseif ($loanSchedule->status === 'In Using') bg-red-600
-                                        @else bg-green-600 @endif ">
-                                    </span>
-                                    {{ $loanSchedule->status }}
+                                <td class="text-left py-3 px-4">
+                                    @if ($loanSchedule->status_id == -1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                        </span>
+                                        Rejected
+                                    @elseif ($loanSchedule->status_id == 0)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                        Available
+                                    @elseif ($loanSchedule->status_id == 1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                        Pending
+                                    @elseif ($loanSchedule->status_id == 2)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                        Accepted
+                                    @elseif ($loanSchedule->status_id == 3)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                        Done
+                                    @else
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                        Busy
+                                    @endif
                                 </td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->loan_date }}</td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->start_time }} -
@@ -70,14 +83,27 @@
                             <tr class="">
                                 <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->rooms->room_name }}</td>
-                                <td>
-                                    <span
-                                        class="inline-block w-[14px] h-[14px] rounded-full mr-2 
-                                        @if ($loanSchedule->status === 'In Progress') bg-yellow-400 
-                                        @elseif ($loanSchedule->status === 'In Using') bg-red-600
-                                        @else bg-green-600 @endif ">
-                                    </span>
-                                    {{ $loanSchedule->status }}
+                                <td class="text-left py-3 px-4">
+                                    @if ($loanSchedule->status_id == -1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                        </span>
+                                        Rejected
+                                    @elseif ($loanSchedule->status_id == 0)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                        Available
+                                    @elseif ($loanSchedule->status_id == 1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                        Pending
+                                    @elseif ($loanSchedule->status_id == 2)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                        Accepted
+                                    @elseif ($loanSchedule->status_id == 3)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                        Done
+                                    @else
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                        Busy
+                                    @endif
                                 </td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->loan_date }}</td>
                                 <td class="text-left py-3 px-4">{{ $loanSchedule->start_time }} -

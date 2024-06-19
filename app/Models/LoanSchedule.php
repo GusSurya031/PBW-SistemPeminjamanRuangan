@@ -18,7 +18,7 @@ class LoanSchedule extends Model
         'start_time',
         'end_time',
         'purpose',
-        'status',
+        'status_id',
     ];
 
     public function admins()

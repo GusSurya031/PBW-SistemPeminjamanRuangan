@@ -63,11 +63,21 @@
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-0.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">4 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BG</p>
+                    </figcaption>
+                </div>
+                <div
+                    class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
+                    <figure class="w-full">
+                        <img src="/img/class-2.png" alt="classroom">
+                    </figure>
+                    <figcaption>
+                        <h3 class="font-bold text-2xl">4 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BC</p>
                     </figcaption>
                 </div>
                 <div
@@ -76,34 +86,24 @@
                         <img src="/img/class.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">2 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BD</p>
                     </figcaption>
                 </div>
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-0.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">2 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BF</p>
                     </figcaption>
                 </div>
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
-                    </figure>
-                    <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
-                    </figcaption>
-                </div>
-                <div
-                    class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
-                    <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-2.png" alt="classroom">
                     </figure>
                     <figcaption>
                         <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>

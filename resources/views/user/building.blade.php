@@ -1,20 +1,21 @@
-@extends('dashboards.layouts.main')
+@extends('layouts.main')
 
 @section('container')
-    <section class="overflow-x-hidden container xl:max-w-7xl mx-auto p-6">
-        <div class="pb-6 border-b-2 border-stone-300">
-            <h1 class="text-left font-bold text-5xl uppercase font-light">List Seluruh Gedung di Fakultas MIPA</h1>
+    <section class="container xl:max-w-7xl mx-auto px-4 mt-[128px] md:mt-[120px]">
+        <div>
+            <h1 class="text-center text-4xl md:text-6xl uppercase font-light my-16">List Seluruh Gedung di Fakultas MIPA</h1>
         </div>
         <div>
             @foreach ($buildings as $building)
-                <div x-data="{ activeAccordion: false }" class="space-y-2 py-6 border-b-2 border-stone-900">
+                <div x-data="{ activeAccordion: false }" class="space-y-2 py-6 border-b-2 border-stone-900 overflow-auto">
                     <div @click="activeAccordion= !activeAccordion" :class="{ 'font-bold': activeAccordion }"
                         class="flex justify-between items-center">
                         <div class="text-2xl flex flex-wrap max-w-[120px] w-full ">
-                            <h2>Gedung <br /><span class="text-5xl font-bold italic ">{{ $building->building_name }}</span>
+                            <h2>Gedung <br />
+                                <span class="text-5xl font-bold italic ">{{ $building->building_name }}</span>
                             </h2>
                         </div>
-                        <div class="flex gap-8">
+                        <div class="hidden md:flex gap-8">
                             <p><span
                                     class="rounded-full border border-stone-900 p-3 font-bold">{{ $building->rooms->count() }}</span>
                                 Ruangan</p>
@@ -34,8 +35,8 @@
                         </div>
                     </div>
 
-                    <div x-cloak x-collapse x-show="activeAccordion">
-                        <table class="min-w-full bg-white mt-4">
+                    <div x-cloak x-collapse x-show="activeAccordion" class="overflow-auto">
+                        <table class="min-w-full bg-white mt-4 ">
                             <thead class="text-xl font-bold bg-stone-900 text-white">
                                 <tr class="">
                                     <th class="text-left py-3 px-4 uppercase font-semibold">No</th>
@@ -85,13 +86,11 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-left py-3 px-4">{{ $schedule->purpose }}</td>
-                                                <td class="text-right py-3 px-4">
-                                                    <button class="relative border border-stone-900 rounded-md">
+                                                <td class="text-right py-3 px-4"> <button
+                                                        class="relative border border-stone-900 rounded-md">
                                                         <a class="active block py-2 px-3 hover:bg-stone-900 hover:text-white"
-                                                            href="{{ route('detail.schedules', ['id' => $schedule->id]) }}">
-                                                            Detail
-                                                        </a>
-                                                    </button>
+                                                            href="/detail/{{ $schedule->id }}">Detail</a>
+                                                    </button></td>
                                             </tr>
                                             @php $iteration += 1; @endphp
                                         @endif

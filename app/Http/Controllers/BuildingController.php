@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\LoanSchedule;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -13,54 +15,22 @@ class BuildingController extends Controller
     public function index()
     {
         $buildings = Building::all();
-        return view('dashboards.building', compact('buildings'));
+        // dd($buildings);
+        // $loan_schedules = LoanSchedule::with('rooms')->where('room_id', $buildings->rooms->room_id);
+        $loan_schedules = LoanSchedule::all();
+        // dd($loan_schedules);
+        // $rooms = Room::all();
+        // return view('dashboards.building', compact('buildings'));
+        return view('user.building', compact('buildings', 'loan_schedules'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function showAdmin()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Building $building)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Building $building)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Building $building)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Building $building)
-    {
-        //
+        $buildings = Building::all();
+        $loan_schedules = LoanSchedule::orderBy('loan_date', 'desc')->get();
+        return view('dashboards.building', compact('buildings', 'loan_schedules'));
     }
 }

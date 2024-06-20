@@ -30,7 +30,8 @@
                         Peminjaman gedung berbasis sistem di Fakultas MIPA Udayana. Dibuat oleh mahasiswa program studi
                         informatika.
                     </p>
-                    <button class="mt-6 border-stone-900 rounded-md text-white bg-stone-900 px-4 py-2 font-bold">
+                    <button
+                        class="mt-6 border-stone-900 rounded-md text-white bg-stone-900 px-4 py-2 font-bold transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg ">
                         <a href="/forms">Pinjam Ruangan FMIPA</a>
                     </button>
                 </div>
@@ -62,11 +63,21 @@
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-0.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">4 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BG</p>
+                    </figcaption>
+                </div>
+                <div
+                    class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
+                    <figure class="w-full">
+                        <img src="/img/class-2.png" alt="classroom">
+                    </figure>
+                    <figcaption>
+                        <h3 class="font-bold text-2xl">4 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BC</p>
                     </figcaption>
                 </div>
                 <div
@@ -75,34 +86,24 @@
                         <img src="/img/class.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">2 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BD</p>
                     </figcaption>
                 </div>
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-0.png" alt="classroom">
                     </figure>
                     <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
+                        <h3 class="font-bold text-2xl">2 Ruangan belajar</h3>
+                        <p class="text-base">Gedung BF</p>
                     </figcaption>
                 </div>
                 <div
                     class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
                     <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
-                    </figure>
-                    <figcaption>
-                        <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
-                        <p class="text-base">Gedung FMIPA</p>
-                    </figcaption>
-                </div>
-                <div
-                    class="text-center md:text-left md:place-self-center flex flex-col gap-2 transform transition duration-300 ease-in-out hover:-translate-y-2">
-                    <figure class="w-full">
-                        <img src="/img/class.png" alt="classroom">
+                        <img src="/img/class-2.png" alt="classroom">
                     </figure>
                     <figcaption>
                         <h3 class="font-bold text-2xl">30 Ruangan belajar</h3>
@@ -114,7 +115,13 @@
         {{-- End Buildings  --}}
     </main>
     @include('layouts.footer')
-    <script src="/js/script.js"></script>
+    <!-- AlpineJS -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@latest/dist/cdn.min.js"></script>
+
+    <script defer src="https://unpkg.com/alpinejs@latest/dist/cdn.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </body>
 
 </html>

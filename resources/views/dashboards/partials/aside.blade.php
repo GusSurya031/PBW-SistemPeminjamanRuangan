@@ -1,35 +1,48 @@
-<aside class="relative bg-sidebar bg-blue-800 h-screen w-64 hidden sm:block shadow-xl ">
+<aside
+    class="relative bg-sidebar bg-white-900 text-stone-900 h-screen border-r-2 w-64 hidden sm:flex shadow-xl sm:flex-col sm:justify-between">
     <div class="p-6">
-        <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-        <button
-            class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-            <i class="fas fa-plus mr-3"></i> New Report
-        </button>
+        <div class="flex flex-col gap-8">
+            <figure class="flex items-center gap-2">
+                <img src="/img/logo.png"></img>
+                <figcaption class="font-bold">RuanganKu</figcaption>
+            </figure>
+            <figure class="flex items-center gap-2">
+                <img src="/img/avatar.jpg" class="w-10 rounded-full"></img>
+                <figcaption class="">
+                    <p>{{ Auth('admin')->user()->name }}</p>
+                    <p class="text-sm text-stone-400">admin</p>
+                </figcaption>
+            </figure>
+        </div>
+        <nav class=" text-base font-semibold mt-12">
+            <p class="text-sm text-stone-300 mb-4">Menu Admin</p>
+            <a href="{{ route('admin.dashboard') }}"
+                class="flex items-center  py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="{{ route('admin.schedules') }}"
+                class="flex items-center hover:opacity-100 py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                <i class="fas fa-table mr-3"></i>
+                Schedules
+            </a>
+            <a href="{{ route('admin.building') }}"
+                class="flex items-center hover:opacity-100 py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                <i class="fas fa-building mr-3"></i>
+                Building
+            </a>
+        </nav>
     </div>
-    <nav class="text-white text-base font-semibold pt-3">
-        <a href="/dashboard" class="flex items-center text-white py-4 pl-6 nav-item">
-            <i class="fas fa-tachometer-alt mr-3"></i>
-            Dashboard
-        </a>
-        <a href="/schedules" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-table mr-3"></i>
-            Schedules
-        </a>
-        <a href="/forms" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-align-left mr-3"></i>
-            Forms
-        </a>
-        <a href="/facility" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-tools mr-3"></i>
-            Facility
-        </a>
-        <a href="/building" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-building mr-3"></i>
-            Building
-        </a>
-        <a href="/room" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-border-all mr-3"></i>
-            Room
-        </a>
-    </nav>
+
+    <div class="p-6">
+        <form action="/admin/logout" method="POST">
+            @csrf
+            <div class="hover:bg-stone-300 hover:rounded transition-all">
+                <button class="py-4 pl-4 hover:bg-stone-300 hover:rounded transition-all font-bold ">
+                    <i class="fas fa-arrow-left mr-3"></i>
+                    Logout
+                </button>
+            </div>
+        </form>
+    </div>
 </aside>

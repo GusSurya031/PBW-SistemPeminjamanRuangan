@@ -25,7 +25,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->string('purpose');
-            $table->string('status')->default('Available');
+            $table->tinyInteger('status_id')->default(0);
             $table->timestamps();
         });
     }

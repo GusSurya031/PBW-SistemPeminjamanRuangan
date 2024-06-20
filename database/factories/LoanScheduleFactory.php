@@ -33,8 +33,8 @@ class LoanScheduleFactory extends Factory
             "end_loan_date" => fake()->date(),
             "start_time" => fake()->dateTime(),
             "end_time" => fake()->time(),
-            "purpose" => fake()->title(),
-            "status" => fake()->randomElement(['Available', 'In Progress', 'Busy', 'Done']),
+            "purpose" => fake()->text(),
+            "status_id" => fake()->numberBetween(-1, 2),
         ];
     }
 }

@@ -1,38 +1,127 @@
 @extends('dashboards.layouts.main')
 
 @section('container')
-    <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Schedules</h1>
-
-            <div class="w-full mt-6">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Jadwal Penggunaan Ruangan
-                </p>
-                <div class="bg-white overflow-auto">
-                    <table class="min-w-full bg-white">
-                        <thead class="bg-gray-800 text-white">
-                            <tr>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">No</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Nama Ruangan</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tanggal</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Pukul</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Status</th>
+    <section class="overflow-x-hidden container xl:max-w-7xl mx-auto p-6">
+        <div class="pb-6 border-b-2 border-stone-300">
+            <h1 class="text-left font-bold text-5xl uppercase font-light">LIST PEMINJAMAN OLEH USER</h1>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="my-4 flex flex-col gap-4">
+                <h2 class="text-3xl font-semibold">Permintaan Peminjaman</h2>
+                <table class="min-w-full bg-white">
+                    <thead class="text-xl font-bold bg-stone-900 text-white">
+                        <tr class="">
+                            <th class="text-left py-3 px-4 font-semibold">No</th>
+                            <th class="text-left py-3 px-4 font-semibold">Nama Peminjam</th>
+                            <th class="text-left py-3 px-4 font-semibold">Status</th>
+                            <th class="text-left py-3 px-4 font-semibold">Tanggal</th>
+                            <th class="text-left py-3 px-4 font-semibold">Jam</th>
+                            <th class="text-left py-3 px-4 font-semibold">Info</th>
+                            <th class="text-left py-3 px-4 font-semibold"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        @foreach ($loanSchedulesAdvice as $loanSchedule)
+                            <tr class="">
+                                <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->rooms->room_name }}</td>
+                                <td class="text-left py-3 px-4">
+                                    @if ($loanSchedule->status_id == -1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                        </span>
+                                        Rejected
+                                    @elseif ($loanSchedule->status_id == 0)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                        Available
+                                    @elseif ($loanSchedule->status_id == 1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                        Pending
+                                    @elseif ($loanSchedule->status_id == 2)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                        Accepted
+                                    @elseif ($loanSchedule->status_id == 3)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                        Done
+                                    @else
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                        Busy
+                                    @endif
+                                </td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->loan_date }}</td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->start_time }} -
+                                    {{ $loanSchedule->end_time }}
+                                </td>
+                                <td class="text-left py-3 px-4 w-1/4">{{ $loanSchedule->purpose }}
+                                </td>
+                                <td class="text-right py-3 px-4">
+                                    <button class="relative border border-stone-900 rounded-md">
+                                        <a class="active block py-2 px-3 hover:bg-stone-900 hover:text-white"
+                                            href="{{ route('detail.schedules', ['id' => $loanSchedule->id]) }}">Detail</a>
+                                    </button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody class="text-gray-700">
-                            @foreach ($loanSchedules as $schedule)
-                                <tr>
-                                    <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
-                                    <td class="text-left py-3 px-4">{{ $schedule->rooms->room_name }}</td>
-                                    <td class="text-left py-3 px-4">{{ $schedule->loan_date }}</td>
-                                    <td class="text-left py-3 px-4">{{ $schedule->start_time }}</td>
-                                    <td class="text-left py-3 px-4"> {{ $schedule->status }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-    </div>
+            <div class="my-4 flex flex-col gap-4">
+                <h2 class="text-3xl font-semibold">Riwayat Peminjaman</h2>
+                <table class="min-w-full bg-white">
+                    <thead class="text-xl font-bold bg-stone-900 text-white">
+                        <tr class="">
+                            <th class="text-left py-3 px-4 font-semibold">No</th>
+                            <th class="text-left py-3 px-4 font-semibold">Nama Peminjam</th>
+                            <th class="text-left py-3 px-4 font-semibold">Status</th>
+                            <th class="text-left py-3 px-4 font-semibold">Tanggal</th>
+                            <th class="text-left py-3 px-4 font-semibold">Jam</th>
+                            <th class="text-left py-3 px-4 font-semibold">Info</th>
+                            <th class="text-left py-3 px-4 font-semibold"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        @foreach ($loanSchedulesHistory as $loanSchedule)
+                            <tr class="">
+                                <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->rooms->room_name }}</td>
+                                <td class="text-left py-3 px-4">
+                                    @if ($loanSchedule->status_id == -1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                        </span>
+                                        Rejected
+                                    @elseif ($loanSchedule->status_id == 0)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                        Available
+                                    @elseif ($loanSchedule->status_id == 1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                        Pending
+                                    @elseif ($loanSchedule->status_id == 2)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                        Accepted
+                                    @elseif ($loanSchedule->status_id == 3)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
+                                        Done
+                                    @else
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                        Busy
+                                    @endif
+                                </td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->loan_date }}</td>
+                                <td class="text-left py-3 px-4">{{ $loanSchedule->start_time }} -
+                                    {{ $loanSchedule->end_time }}
+                                </td>
+                                <td class="text-left py-3 px-4 w-1/4">{{ $loanSchedule->purpose }}
+                                </td>
+                                <td class="text-right py-3 px-4">
+                                    <button class="relative border border-stone-900 rounded-md">
+                                        <a class="active block py-2 px-3 hover:bg-stone-900 hover:text-white"
+                                            href="{{ route('detail.schedules', ['id' => $loanSchedule->id]) }}">Detail</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 @endsection

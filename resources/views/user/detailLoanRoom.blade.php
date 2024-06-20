@@ -3,7 +3,7 @@
 @section('container')
     <section class="container xl:max-w-7xl mx-auto px-4 mt-[128px] md:mt-[120px]">
         <div class="header flex md:grid md:grid-cols-3 gap-4 justify-center items-center pb-12 border-b-2 relative">
-            <div class="absolute top-0 left-0">
+            <div class="absolute top-0 left-0 md:relative">
                 <button class="p-3 md:p-4 border-2 text-stone-400 border-stone-400 rounded-full"
                     onclick="window.history.back();">
                     <i class="fas fa-chevron-left"></i>
@@ -125,12 +125,30 @@
                     </span> Lampu
                 </p>
             </div>
-            <div>
-                <button
-                    class="mt-6 border-stone-900 rounded-xl text-xl text-stone-900 border border-stone-900 border-2 px-4 py-2 font-bold transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:bg-stone-900 hover:text-white">
-                    <a href="/forms">Pinjam Ruangan FMIPA</a>
-                </button>
-            </div>
+            @if ($detailRoomLoan->status_id == 2)
+                <div class="my-12">
+                    <button
+                        class="p-4 w-full border border-2 border-green-500 text-green-500 text-2xl outline outline-green-500 outline-offset-4 font-bold ">
+                        Sudah Diterima
+                    </button>
+                </div>
+            @elseif($detailRoomLoan->status_id == -1)
+                <div class="my-12">
+                    <button
+                        class="p-4 w-full border border-2 border-red-500 text-red-500 text-2xl outline outline-red-500 outline-offset-4 font-bold "
+                        disabled>
+                        Ditolak
+                    </button>
+                </div>
+            @else
+                <div>
+                    <button
+                        class="mt-6 border-stone-900 rounded-xl text-xl text-stone-900 border border-stone-900 border-2 px-4 py-2 font-bold transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:bg-stone-900 hover:text-white">
+                        <a href="/forms">Pinjam Ruangan FMIPA</a>
+                    </button>
+                </div>
+            @endif
+
         </div>
     </section>
 @endsection

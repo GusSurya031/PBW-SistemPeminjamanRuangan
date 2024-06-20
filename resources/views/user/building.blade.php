@@ -11,7 +11,8 @@
                     <div @click="activeAccordion= !activeAccordion" :class="{ 'font-bold': activeAccordion }"
                         class="flex justify-between items-center">
                         <div class="text-2xl flex flex-wrap max-w-[120px] w-full ">
-                            <h2>Gedung <br /><span class="text-5xl font-bold italic ">{{ $building->building_name }}</span>
+                            <h2>Gedung <br />
+                                <span class="text-5xl font-bold italic ">{{ $building->building_name }}</span>
                             </h2>
                         </div>
                         <div class="hidden md:flex gap-8">

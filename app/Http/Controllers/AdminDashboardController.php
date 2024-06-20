@@ -24,6 +24,7 @@ class AdminDashboardController extends Controller
             ->orderBy('loan_date', 'desc')
             ->get();
         $today = Carbon::today()->toDateString();
+
         $todayLoan = LoanSchedule::with('rooms')->where('loan_date', $today)->get();
         // dd($loanSchedules);
 

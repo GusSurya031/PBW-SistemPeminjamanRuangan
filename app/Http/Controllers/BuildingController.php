@@ -15,8 +15,10 @@ class BuildingController extends Controller
     public function index()
     {
         $buildings = Building::all();
+        // dd($buildings);
         // $loan_schedules = LoanSchedule::with('rooms')->where('room_id', $buildings->rooms->room_id);
         $loan_schedules = LoanSchedule::all();
+        // dd($loan_schedules);
         // $rooms = Room::all();
         // return view('dashboards.building', compact('buildings'));
         return view('user.building', compact('buildings', 'loan_schedules'));

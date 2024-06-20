@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
 
         User::factory(1)->create();
         Admin::factory(1)->create();
-        // Building::factory(2)->create();
-        // Facility::factory(2)->create();
-        // Room::factory(2)->create();
+        Building::factory(2)->create();
+        Facility::factory(2)->create();
+        Room::factory(2)->create();
         LoanSchedule::factory(10)->create();
     }
 }

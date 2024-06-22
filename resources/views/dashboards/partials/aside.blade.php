@@ -17,17 +17,17 @@
         <nav class=" text-base font-semibold mt-12">
             <p class="text-sm text-stone-300 mb-4">Menu Admin</p>
             <a href="{{ route('admin.dashboard') }}"
-                class="flex items-center  py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                class="flex items-center py-4 pl-4 nav-item hover:bg-stone-300 rounded transition-all @if (Route::is('admin.dashboard')) bg-stone-300 font-bold @endif"">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
             <a href="{{ route('admin.schedules') }}"
-                class="flex items-center hover:opacity-100 py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                class="flex items-center my-2 py-4 pl-4 nav-item hover:bg-stone-300 rounded transition-all @if (Route::is('admin.schedules')) bg-stone-300 font-bold @endif">
                 <i class="fas fa-table mr-3"></i>
                 Schedules
             </a>
             <a href="{{ route('admin.building') }}"
-                class="flex items-center hover:opacity-100 py-4 pl-4 nav-item hover:bg-stone-300 hover:rounded transition-all">
+                class="flex items-center py-4 pl-4 nav-item hover:bg-stone-300 rounded transition-all @if (Route::is('admin.building')) bg-stone-300 font-bold @endif"">
                 <i class="fas fa-building mr-3"></i>
                 Building
             </a>

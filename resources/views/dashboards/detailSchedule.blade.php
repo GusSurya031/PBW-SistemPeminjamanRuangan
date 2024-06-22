@@ -21,26 +21,32 @@
                     <p class="text-2xl">{{ $time['start'] }} - {{ $time['end'] }}</p>
                     <p>{{ $detailRoomLoan->purpose }}</p>
                     <p>
-                        @if ($detailRoomLoan->status_id == -1)
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
-                            </span>
-                            Rejected
-                        @elseif ($detailRoomLoan->status_id == 0)
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
-                            Available
-                        @elseif ($detailRoomLoan->status_id == 1)
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
-                            Pending
-                        @elseif ($detailRoomLoan->status_id == 2)
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
-                            Accepted
-                        @elseif ($detailRoomLoan->status_id == 3)
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
-                            Done
-                        @else
-                            <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
-                            Busy
-                        @endif
+                        @switch ($detailRoomLoan->status_id)
+                            @case(-1)
+                                <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                </span>
+                                Rejected
+                            @break
+
+                            @case(0)
+                                <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                Available
+                            @break
+
+                            @case(1)
+                                <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                Pending
+                            @break
+
+                            @case(2)
+                                <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                Accepted
+                            @break
+
+                            @default
+                                <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                Busy
+                        @endswitch
                     </p>
                 </div>
             </div>
@@ -64,26 +70,32 @@
                             <td class="text-left py-3 px-4">{{ $loop->iteration }}</td>
                             <td class="text-left py-3 px-4">{{ $allRoom->user->name }}</td>
                             <td class="text-left py-3 px-4">
-                                @if ($allRoom->status_id == -1)
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
-                                    </span>
-                                    Rejected
-                                @elseif ($allRoom->status_id == 0)
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
-                                    Available
-                                @elseif ($allRoom->status_id == 1)
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
-                                    Pending
-                                @elseif ($allRoom->status_id == 2)
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
-                                    Accepted
-                                @elseif ($allRoom->status_id == 3)
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-purple-400"></span>
-                                    Done
-                                @else
-                                    <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
-                                    Busy
-                                @endif
+                                @switch ($allRoom->status_id)
+                                    @case(-1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-red-400">
+                                        </span>
+                                        Rejected
+                                    @break
+
+                                    @case(0)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-stone-400"></span>
+                                        Available
+                                    @break
+
+                                    @case(1)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-yellow-400"></span>
+                                        Pending
+                                    @break
+
+                                    @case(2)
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-green-400"></span>
+                                        Accepted
+                                    @break
+
+                                    @default
+                                        <span class="inline-block w-[14px] h-[14px] rounded-full mr-2 bg-blue-400"></span>
+                                        Busy
+                                @endswitch
                             </td>
                             <td class="text-left py-3 px-4">{{ $allRoom->loan_date }}</td>
                             <td class="text-left py-3 px-4">{{ $allRoom->start_time }} -
@@ -186,7 +198,5 @@
                 </div>
             </div>
         </div>
-    </section>
-
     </section>
 @endsection

@@ -10,7 +10,7 @@
             </div>
             {{-- Mobile Nav --}}
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end lg:hidden">
-                <button @click="isOpen = !isOpen"
+                <button @click=" isOpen = !isOpen"
                     class="relative menu-mobile block py-3 px-6 border-b-2 border-transparent">
                     <div>
                         <svg class="open h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -58,6 +58,7 @@
             </div>
         </div>
 
+        {{-- Desktop Nav --}}
         <div class="flex flex-row">
             <!-- nav menu -->
             <ul
@@ -76,7 +77,7 @@
                 </li>
                 @auth
                     <li>
-                        <a href="/history   " class="hover:font-bold">
+                        <a href="/history" class="hover:font-bold">
                             Riwayat Peminjaman</a>
                     </li>
                 @endauth
@@ -97,7 +98,8 @@
             @else
                 <ul
                     class="navbar bg-white lg:bg-transparent w-full hidden text-center lg:text-left lg:flex lg:flex-row gap-4 text-gray-900 items-center font-bold text-base">
-                    <li class="relative border border-stone-900 rounded-md">
+                    <li
+                        class="relative border border-stone-900 rounded-md transition-all hover:bg-stone-900 hover:text-white">
                         <a class="active block py-3 px-6" href="/login">Login</a>
                     </li>
                     <li class="relative border border-stone-900 rounded-md text-white bg-stone-900">
@@ -109,4 +111,4 @@
 
         </div>
     </nav>
-</header><!-- end header -->
+</header>

@@ -19,9 +19,9 @@
                 <figcaption class="text-2xl capitalize text-gray-900">RuanganKu
                 </figcaption>
             </a>
-            <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Log in your account
+            <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Log in Admin account
             </h2>
-            <p class="text-center">Masukan data untuk login ke aplikasi peminjaman ruangan</p>
+            <p class="text-center">Masukan data untuk login ke dashboard peminjaman ruangan</p>
         </div>
 
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -60,11 +60,6 @@
                         in</button>
                 </div>
             </form>
-
-            <p class="mt-10 text-center text-sm text-gray-500">
-                Don't have account?
-                <a href="/register" class="font-semibold leading-6 text-stone-900 hover:text-stone-500">Register first</a>
-            </p>
         </div>
     </div>
 @endsection

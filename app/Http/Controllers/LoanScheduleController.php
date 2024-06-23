@@ -86,8 +86,7 @@ class LoanScheduleController extends Controller
     public function history()
     {
         $idUser = Auth()->user()->nim;
-        $loanSchedules = LoanSchedule::with('rooms')->where('user_nim', $idUser)->get();
-        // dd($loanSchedules);
+        $loanSchedules = LoanSchedule::with('rooms')->where('user_nim', $idUser)->orderBy('loan_date', 'desc')->get();
         return view('user.history', compact('loanSchedules'));
     }
 
@@ -127,23 +126,5 @@ class LoanScheduleController extends Controller
         // dd(LoanSchedule::find($id));
 
         return redirect(route('admin.dashboard'));
-    }
-
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LoanSchedule $loanSchedule)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LoanSchedule $loanSchedule)
-    {
-        //
     }
 }
